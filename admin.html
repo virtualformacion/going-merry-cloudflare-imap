@@ -37,7 +37,7 @@
 
   <section id="mailboxesSection" style="margin-top:28px;border-top:2px solid #ddd;padding-top:12px">
     <h2>Buzones Gmail por IMAP</h2>
-    <p>Conexión cifrada a Gmail, puerto 993. Las claves se guardan cifradas en GitHub.</p>
+    <p>Conexión cifrada a Gmail, puerto 993. Las claves se guardan cifradas por seguridad.</p>
     <input id="mailboxId" type="hidden">
     <div class="form-row"><label>Nombre del buzón</label><input id="mailboxName" type="text" maxlength="100" placeholder="Principal, respaldo..."></div>
     <div class="form-row"><label>Correo del buzón</label><input id="mailboxEmail" type="text" autocomplete="off" placeholder="cuenta@gmail.com"></div>
@@ -124,7 +124,7 @@ document.getElementById("btnCreate").addEventListener("click", async () => {
   const emails = parseEmails(emailsRaw);
   const res = await callFunc({ action: "create", adminUser, adminPass, payload: { username, password, expiresAt, emails } });
   if (res && res.success) {
-    document.getElementById("createMsg").innerText = "Usuario creado correctamente en GitHub. Espera a que Cloudflare termine el despliegue y recarga la página de acceso.";
+    document.getElementById("createMsg").innerText = "Usuario creado correctamente. Espera unos segundos y recarga la página de acceso.";
     // refrescar lista
     const list = await callFunc({ action: "list", adminUser, adminPass });
     renderUsers(list.users);
